@@ -5,7 +5,13 @@ function App() {
 	return (
 		<>
 			<div className="App">helloworld</div>
-			<img src={process.env.PUBLIC_URL + "/img/IMG_0100.jpg"} alt="test" />
+			<img
+				src={
+					process.env.PUBLIC_URL +
+					"/img/IMG_0100.jpg?nf_resize=smartcrop&w=300&h=400"
+				}
+				alt="test"
+			/>
 		</>
 	);
 }
