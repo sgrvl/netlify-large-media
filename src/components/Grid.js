@@ -2,15 +2,14 @@ import React from "react";
 import { importAll } from "./utils";
 
 const Grid = () => {
-	const images = importAll(require.context("../img", false, /jpg$/));
-
-	//const regex = /IMG_\d{4}/g;
+	const images = importAll(
+		require.context(process.env.PUBLIC_URL, true, /jpg$/)
+	);
 
 	return (
 		<div>
-			<p>this is a grid</p>
+			<p>This is a grid</p>
 			{Object.entries(images).map((img) => {
-				//let found = img[1].match(regex);
 				return (
 					<img
 						style={{ width: "200px", height: "200px", objectFit: "cover" }}
@@ -20,6 +19,8 @@ const Grid = () => {
 					/>
 				);
 			})}
+			{/* <p>This is a test</p>
+			<img src={process.env.PUBLIC_URL + "/img/IMG_0100.jpg"} alt="test" /> */}
 		</div>
 	);
 };
