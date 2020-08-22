@@ -8,7 +8,7 @@ function App() {
 			<img
 				src={
 					process.env.PUBLIC_URL +
-					"/img/IMG_0100.jpg?nf_resize=smartcrop&w=300&h=400"
+					"/img/IMG_0100.jpg?nf_resize=smartcrop&w=200&h=200"
 				}
 				alt="test"
 			/>
