@@ -1,26 +1,32 @@
-import React from "react";
-import { importAll } from "./utils";
+import React, { useState, useEffect } from "react";
+import Txt from "./list.txt";
 
 const Grid = () => {
-	const images = importAll(
-		require.context(process.env.PUBLIC_URL, true, /jpg$/)
-	);
+	const [images, setImages] = useState([]);
+
+	useEffect(() => {
+		fetch(Txt)
+			.then((res) => res.text())
+			.then((data) => data.trim().split("\n"))
+			.then(setImages);
+	}, []);
 
 	return (
 		<div>
 			<p>This is a grid</p>
-			{Object.entries(images).map((img) => {
+			<p>This is a test</p>
+			{images.map((item, index) => {
 				return (
 					<img
-						style={{ width: "200px", height: "200px", objectFit: "cover" }}
-						key={`image ${img[0]}`}
-						src={`${img[1]}?nf_resize=smartcrop&w=200&h=200`}
-						alt={img[0]}
+						key={`${item} ${index}`}
+						src={
+							process.env.PUBLIC_URL +
+							`/img/${item}?nf_resize=smartcrop&w=200&h=200`
+						}
+						alt={`${item}`}
 					/>
 				);
 			})}
-			{/* <p>This is a test</p>
-			<img src={process.env.PUBLIC_URL + "/img/IMG_0100.jpg"} alt="test" /> */}
 		</div>
 	);
 };
