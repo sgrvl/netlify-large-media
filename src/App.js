@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "./components/Grid";
 import { createGlobalStyle } from "styled-components";
+import Modal from "./components/Modal";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -23,13 +24,16 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function App() {
+const App = () => {
+	const [selected, setSelected] = useState("");
+
 	return (
 		<>
-			<Grid />
+			<Modal selected={selected} setSelected={setSelected} />
+			<Grid setSelected={setSelected} />
 			<GlobalStyle />
 		</>
 	);
-}
+};
 
 export default App;
