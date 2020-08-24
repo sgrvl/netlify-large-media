@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import Txt from "./list.txt";
 import styled from "styled-components";
-import LazyLoad from "react-lazy-load";
+import LazyLoad from "react-lazyload";
+import { disableBodyScroll } from "body-scroll-lock";
 
 const StyledGrid = styled.div`
 	display: grid;
@@ -11,7 +12,7 @@ const StyledGrid = styled.div`
 	margin: 1em;
 `;
 
-const ImageWrap = styled(LazyLoad)`
+const ImageWrap = styled.div`
 	cursor: pointer;
 	overflow: hidden;
 	height: 0;
@@ -45,23 +46,30 @@ const Grid = ({ setSelected }) => {
 			.then(setImages);
 	}, []);
 
+	const handleClick = (item) => {
+		disableBodyScroll();
+		setSelected(item);
+	};
+
 	return (
 		<StyledGrid>
 			{images.map((item, index) => {
 				return (
 					<ImageWrap
-						offset={500}
+						//offset={500}
 						mobile={isMobile}
 						key={`${item} ${index}`}
-						onClick={() => setSelected(item)}
+						onClick={() => handleClick(item)}
 					>
-						<Image
-							src={
-								process.env.PUBLIC_URL +
-								`/img/${item}?nf_resize=smartcrop&w=200&h=200`
-							}
-							alt={`${item}`}
-						/>
+						<LazyLoad offset={500} height="100%">
+							<Image
+								src={
+									process.env.PUBLIC_URL +
+									`/img/${item}?nf_resize=smartcrop&w=200&h=200`
+								}
+								alt={`${item}`}
+							/>
+						</LazyLoad>
 					</ImageWrap>
 				);
 			})}

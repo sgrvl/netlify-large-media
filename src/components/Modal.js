@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { enableBodyScroll } from "body-scroll-lock";
 
 const StyledModal = styled.div`
 	position: fixed;
@@ -29,6 +30,7 @@ const Modal = ({ selected, setSelected }) => {
 	const handleClick = (e) => {
 		if (e.target.tagName === "DIV") {
 			setSelected("");
+			enableBodyScroll();
 		}
 	};
 
