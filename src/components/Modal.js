@@ -20,8 +20,8 @@ const StyledModal = styled.div`
 
 const Image = styled.img`
 	display: block;
-	max-width: 75%;
-	max-height: 75%;
+	max-width: 98%;
+	max-height: 98%;
 	margin: 60px auto;
 	box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
 `;
