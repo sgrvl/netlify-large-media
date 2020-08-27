@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { isMobile } from "react-device-detect";
-import Txt from "./list.txt";
+import { disableBodyScroll } from "body-scroll-lock";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
-import { disableBodyScroll } from "body-scroll-lock";
 
 const StyledGrid = styled.div`
 	display: grid;
@@ -34,21 +33,10 @@ const Image = styled.img`
 	left: 0;
 `;
 
-const Grid = ({ setSelected }) => {
-	const [images, setImages] = useState([]);
-
-	/* Text file from 'dir /b *.jpg > ../../src/components/list.txt' in img folder */
-
-	useEffect(() => {
-		fetch(Txt)
-			.then((res) => res.text())
-			.then((data) => data.trim().split("\n"))
-			.then(setImages);
-	}, []);
-
-	const handleClick = (item) => {
+const Grid = ({ images, setIndex }) => {
+	const handleClick = (index) => {
 		disableBodyScroll();
-		setSelected(item);
+		setIndex(index);
 	};
 
 	return (
@@ -59,7 +47,7 @@ const Grid = ({ setSelected }) => {
 						//offset={500}
 						mobile={isMobile}
 						key={`${item} ${index}`}
-						onClick={() => handleClick(item)}
+						onClick={() => handleClick(index)}
 					>
 						<LazyLoad offset={500} height="100%">
 							<Image

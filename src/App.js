@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Txt from "./components/list.txt";
 import Grid from "./components/Grid";
 import { createGlobalStyle } from "styled-components";
 import Modal from "./components/Modal";
@@ -27,12 +28,26 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => {
-	const [selected, setSelected] = useState("");
+	/* Text file from 'dir /b *.jpg > ../../src/components/list.txt' in img folder */
+	const [images, setImages] = useState([]);
+	const [index, setIndex] = useState(null);
+
+	useEffect(() => {
+		fetch(Txt)
+			.then((res) => res.text())
+			.then((data) => data.trim().split("\n"))
+			.then(setImages);
+	}, []);
 
 	return (
 		<>
-			<Modal selected={selected} setSelected={setSelected} />
-			<Grid setSelected={setSelected} />
+			<Modal
+				setIndex={setIndex}
+				image={images[index]}
+				index={index}
+				max={images.length - 1}
+			/>
+			<Grid setIndex={setIndex} images={images} />
 			<GlobalStyle />
 		</>
 	);
