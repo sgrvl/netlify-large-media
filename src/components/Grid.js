@@ -33,9 +33,13 @@ const Image = styled.img`
 	left: 0;
 `;
 
+const options = {
+	reserveScrollBarGap: true,
+};
+
 const Grid = ({ images, setIndex }) => {
 	const handleClick = (index) => {
-		disableBodyScroll();
+		disableBodyScroll(window.body, options);
 		setIndex(index);
 	};
 
