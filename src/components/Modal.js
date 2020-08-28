@@ -89,8 +89,8 @@ const Modal = ({ image, index, setIndex, max }) => {
 					<Image
 						src={process.env.PUBLIC_URL + `/img/${image}`}
 						alt={image}
-						onDragStart={(e) => handleDragStart(e.pageX)}
-						onDragEnd={(e) => setDragEnd(e.pageX)}
+						/*onDragStart={(e) => handleDragStart(e.pageX)}
+						onDragEnd={(e) => setDragEnd(e.pageX)}*/
 						onTouchStart={(e) => handleDragStart(-e.touches[0].pageX)}
 						onTouchMove={(e) => setDragEnd(-e.touches[0].pageX)}
 					/>
