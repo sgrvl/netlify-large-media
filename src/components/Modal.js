@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import { enableBodyScroll } from "body-scroll-lock";
 import KeyHandler, { KEYDOWN } from "react-key-handler";
 
-const StyledModal = styled.div`
+const StyledModal = styled(motion.div)`
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -19,7 +20,7 @@ const StyledModal = styled.div`
 	opacity: 100;
 `;
 
-const Image = styled.img`
+const Image = styled(motion.img)`
 	display: block;
 	max-width: 97%;
 	max-height: 97%;
@@ -32,6 +33,7 @@ const Modal = ({ image, index, setIndex, max }) => {
 	const [dragStart, setDragStart] = useState(null);
 	const [dragEnd, setDragEnd] = useState(null);
 	const [move, setMove] = useState(0);
+	const [direction, setDirection] = useState(0);
 
 	const handleClick = (e) => {
 		if (e.target.name !== "BUTTON") {
@@ -72,31 +74,51 @@ const Modal = ({ image, index, setIndex, max }) => {
 		}
 	}, [max, index, setIndex]);
 
+	const handleDirection = (d) => {
+		if (d) {
+			setDirection(window.innerWidth / 2);
+			setIndex(index + 1);
+		} else {
+			setDirection(-window.innerWidth / 2);
+			setIndex(index - 1);
+		}
+	};
+
 	return (
-		<div>
-			{image && (
-				<StyledModal onClick={handleClick}>
-					<KeyHandler
-						keyEventName={KEYDOWN}
-						code="ArrowRight"
-						onKeyHandle={() => setIndex(index + 1)}
-					/>
-					<KeyHandler
-						keyEventName={KEYDOWN}
-						code="ArrowLeft"
-						onKeyHandle={() => setIndex(index - 1)}
-					/>
-					<Image
-						src={process.env.PUBLIC_URL + `/img/${image}`}
-						alt={image}
-						/*onDragStart={(e) => handleDragStart(e.pageX)}
+		<>
+			<KeyHandler
+				keyEventName={KEYDOWN}
+				code="ArrowRight"
+				onKeyHandle={() => handleDirection(true)}
+			/>
+			<KeyHandler
+				keyEventName={KEYDOWN}
+				code="ArrowLeft"
+				onKeyHandle={() => handleDirection(false)}
+			/>
+			<AnimatePresence type="crossfade">
+				{image && (
+					<StyledModal
+						onClick={handleClick}
+						animate={{ opacity: 1 }}
+						initial={{ opacity: 0 }}
+						exit={{ opacity: 0 }}
+					>
+						<Image
+							initial={{ x: direction }}
+							animate={{ x: 0 }}
+							key={image}
+							src={process.env.PUBLIC_URL + `/img/${image}`}
+							alt={image}
+							/*onDragStart={(e) => handleDragStart(e.pageX)}
 						onDragEnd={(e) => setDragEnd(e.pageX)}*/
-						onTouchStart={(e) => handleDragStart(-e.touches[0].pageX)}
-						onTouchMove={(e) => setDragEnd(-e.touches[0].pageX)}
-					/>
-				</StyledModal>
-			)}
-		</div>
+							onTouchStart={(e) => handleDragStart(-e.touches[0].pageX)}
+							onTouchMove={(e) => setDragEnd(-e.touches[0].pageX)}
+						/>
+					</StyledModal>
+				)}
+			</AnimatePresence>
+		</>
 	);
 };
 
