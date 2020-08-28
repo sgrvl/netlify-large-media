@@ -126,7 +126,6 @@ const Modal = ({ image, index, setIndex, max }) => {
 								></motion.polyline>
 							</svg>
 						)}
-
 						<Image
 							drag={isMobile ? "x" : false}
 							layout
