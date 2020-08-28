@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import { enableBodyScroll } from "body-scroll-lock";
 import KeyHandler, { KEYDOWN } from "react-key-handler";
+import { isMobile } from "react-device-detect";
 
 const StyledModal = styled(motion.div)`
 	position: fixed;
@@ -36,7 +37,7 @@ const Modal = ({ image, index, setIndex, max }) => {
 	const [direction, setDirection] = useState(0);
 
 	const handleClick = (e) => {
-		if (e.target.name !== "BUTTON") {
+		if (e.target.tagName === "DIV" || e.target.tagName === "IMG") {
 			setIndex(null);
 			enableBodyScroll();
 		}
@@ -53,7 +54,7 @@ const Modal = ({ image, index, setIndex, max }) => {
 	}, [dragStart, dragEnd, move]);
 
 	useEffect(() => {
-		const threshold = window.innerWidth * 0.2;
+		const threshold = window.innerWidth * 0.45;
 		if (move > threshold) {
 			setIndex(index + 1);
 			setMove(0);
@@ -99,22 +100,68 @@ const Modal = ({ image, index, setIndex, max }) => {
 			<AnimatePresence type="crossfade">
 				{image && (
 					<StyledModal
-						onClick={handleClick}
+						onClick={(e) => handleClick(e)}
 						animate={{ opacity: 1 }}
 						initial={{ opacity: 0 }}
 						exit={{ opacity: 0 }}
 					>
+						{!isMobile && (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="125"
+								height="125"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="White"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<motion.polyline
+									style={{ cursor: "pointer" }}
+									whileHover={{ scale: 1.2 }}
+									whileTap={{ scale: 0.8 }}
+									onTap={() => handleDirection(false)}
+									points="15 18 9 12 15 6"
+								></motion.polyline>
+							</svg>
+						)}
 						<Image
-							initial={{ x: direction }}
-							animate={{ x: 0 }}
+							drag={isMobile ? "x" : false}
+							layout
+							initial={{ x: direction, opacity: 0 }}
+							animate={{ x: 0, opacity: 1 }}
 							key={image}
 							src={process.env.PUBLIC_URL + `/img/${image}`}
 							alt={image}
+							//Desktop dragging
 							/*onDragStart={(e) => handleDragStart(e.pageX)}
-						onDragEnd={(e) => setDragEnd(e.pageX)}*/
+							onDrag={(e) => setDragEnd(e.pageX)}*/
+							//Mobile dragging
 							onTouchStart={(e) => handleDragStart(-e.touches[0].pageX)}
 							onTouchMove={(e) => setDragEnd(-e.touches[0].pageX)}
 						/>
+						{!isMobile && (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="125"
+								height="125"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="White"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<motion.polyline
+									style={{ cursor: "pointer" }}
+									whileHover={{ scale: 1.2 }}
+									whileTap={{ scale: 0.8 }}
+									onTap={() => handleDirection(true)}
+									points="9 18 15 12 9 6"
+								></motion.polyline>
+							</svg>
+						)}
 					</StyledModal>
 				)}
 			</AnimatePresence>
