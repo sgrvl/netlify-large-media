@@ -2,7 +2,6 @@ IMG_0100.jpg
 IMG_0109.jpg
 IMG_0125.jpg
 IMG_0137.jpg
-IMG_0139.jpg
 IMG_0144.jpg
 IMG_0147.jpg
 IMG_0148.jpg
@@ -52,13 +51,10 @@ IMG_0574.jpg
 IMG_0577.jpg
 IMG_0579.jpg
 IMG_0583.jpg
-IMG_0585.jpg
 IMG_0587.jpg
 IMG_0591.jpg
 IMG_0592.jpg
-IMG_0594.jpg
 IMG_0595.jpg
-IMG_0602.jpg
 IMG_0607.jpg
 IMG_0608.jpg
 IMG_0612.jpg
@@ -68,7 +64,6 @@ IMG_0623.jpg
 IMG_0626.jpg
 IMG_0629.jpg
 IMG_0636.jpg
-IMG_0647.jpg
 IMG_0650.jpg
 IMG_0651.jpg
 IMG_0659.jpg
@@ -78,10 +73,8 @@ IMG_0668.jpg
 IMG_0670.jpg
 IMG_0671.jpg
 IMG_0672.jpg
-IMG_0673.jpg
 IMG_0697.jpg
 IMG_0700.jpg
-IMG_0708.jpg
 IMG_0711.jpg
 IMG_0714.jpg
 IMG_0720.jpg
@@ -90,7 +83,6 @@ IMG_0724.jpg
 IMG_0725.jpg
 IMG_0728.jpg
 IMG_0729.jpg
-IMG_0731.jpg
 IMG_0732.jpg
 IMG_0735.jpg
 IMG_0736.jpg
@@ -122,6 +114,7 @@ IMG_0837.jpg
 IMG_0850.jpg
 IMG_0851.jpg
 IMG_0852.jpg
+IMG_0854.jpg
 IMG_0862.jpg
 IMG_0868.jpg
 IMG_0870.jpg

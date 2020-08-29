@@ -6,7 +6,7 @@ import LazyLoad from "react-lazyload";
 
 const StyledGrid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 1em;
 	margin: 1em;
 `;
@@ -57,7 +57,7 @@ const Grid = ({ images, setIndex }) => {
 							<Image
 								src={
 									process.env.PUBLIC_URL +
-									`/img/${item}?nf_resize=smartcrop&w=200&h=200`
+									`/img/${item}?nf_resize=smartcrop&w=400&h=400`
 								}
 								alt={`${item}`}
 							/>
