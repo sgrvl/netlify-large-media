@@ -41,12 +41,12 @@ const App = () => {
 
 	useEffect(() => {
 		/*Preloading bigger images ~~ test */
-		images.map((i) => {
+		/*images.map((i) => {
 			const test = new Image();
 			test.src = process.env.PUBLIC_URL + `/img/${i}`;
-			//console.log(test);
+			console.log(test);
 			return null;
-		});
+		});*/
 	}, [images]);
 
 	return (
