@@ -1,10 +1,9 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import Txt from "./components/list.txt";
 import { createGlobalStyle } from "styled-components";
 import { isMobile } from "react-device-detect";
-
-const Grid = lazy(() => import("./components/Grid"));
-const Modal = lazy(() => import("./components/Modal"));
+import Grid from "./components/Grid";
+import Modal from "./components/Modal";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -29,8 +28,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const renderLoader = () => <p>Loading</p>;
-
 const App = () => {
 	/* Text file from 'dir /b *.jpg > ../../src/components/list.txt' in img folder */
 	const [images, setImages] = useState([]);
@@ -44,7 +41,7 @@ const App = () => {
 	}, []);
 
 	return (
-		<Suspense fallback={renderLoader()}>
+		<>
 			<Modal
 				isMobile={isMobile}
 				setIndex={setIndex}
@@ -54,7 +51,7 @@ const App = () => {
 			/>
 			<Grid setIndex={setIndex} images={images} isMobile={isMobile} />
 			<GlobalStyle />
-		</Suspense>
+		</>
 	);
 };
 
