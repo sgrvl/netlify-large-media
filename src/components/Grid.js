@@ -1,5 +1,4 @@
 import React from "react";
-import { isMobile } from "react-device-detect";
 import { disableBodyScroll } from "body-scroll-lock";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
@@ -39,7 +38,7 @@ const options = {
 	reserveScrollBarGap: true,
 };
 
-const Grid = ({ images, setIndex }) => {
+const Grid = ({ images, setIndex, isMobile }) => {
 	const handleClick = (index) => {
 		disableBodyScroll(window.body, options);
 		setIndex(index);

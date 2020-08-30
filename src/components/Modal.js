@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import { enableBodyScroll } from "body-scroll-lock";
 import KeyHandler, { KEYDOWN } from "react-key-handler";
-import { isMobile } from "react-device-detect";
 
 const StyledModal = styled(motion.div)`
 	position: fixed;
@@ -12,11 +11,9 @@ const StyledModal = styled(motion.div)`
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
-
 	justify-content: center;
 	align-items: center;
 	z-index: 2;
-
 	display: flex;
 	opacity: 100;
 `;
@@ -27,10 +24,9 @@ const Image = styled(motion.img)`
 	max-height: 97%;
 	margin: 60px auto;
 	box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
-	/* transform: translateX(${(props) => props.move}); */
 `;
 
-const Modal = ({ image, index, setIndex, max }) => {
+const Modal = ({ image, index, setIndex, max, isMobile }) => {
 	const [direction, setDirection] = useState(0);
 
 	const handleClick = (e) => {

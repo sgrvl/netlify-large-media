@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import Txt from "./components/list.txt";
-import Grid from "./components/Grid";
 import { createGlobalStyle } from "styled-components";
-import Modal from "./components/Modal";
+import { isMobile } from "react-device-detect";
+
+const Grid = lazy(() => import("./components/Grid"));
+const Modal = lazy(() => import("./components/Modal"));
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -27,6 +29,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const renderLoader = () => <p>Loading</p>;
+
 const App = () => {
 	/* Text file from 'dir /b *.jpg > ../../src/components/list.txt' in img folder */
 	const [images, setImages] = useState([]);
@@ -39,27 +43,18 @@ const App = () => {
 			.then(setImages);
 	}, []);
 
-	useEffect(() => {
-		/*Preloading bigger images ~~ test */
-		/*images.map((i) => {
-			const test = new Image();
-			test.src = process.env.PUBLIC_URL + `/img/${i}`;
-			console.log(test);
-			return null;
-		});*/
-	}, [images]);
-
 	return (
-		<>
+		<Suspense fallback={renderLoader()}>
 			<Modal
+				isMobile={isMobile}
 				setIndex={setIndex}
 				image={images[index]}
 				index={index}
 				max={images.length - 1}
 			/>
-			<Grid setIndex={setIndex} images={images} />
+			<Grid setIndex={setIndex} images={images} isMobile={isMobile} />
 			<GlobalStyle />
-		</>
+		</Suspense>
 	);
 };
 
