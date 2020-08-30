@@ -69,7 +69,11 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 						exit={{ opacity: 0 }}
 					>
 						{!isMobile && (
-							<svg
+							<motion.svg
+								style={{ cursor: "pointer", originX: "50%", originY: "50%" }}
+								whileHover={{ scale: 1.2 }}
+								whileTap={{ scale: 0.8 }}
+								onTap={() => setIndex(index - 1)}
 								xmlns="http://www.w3.org/2000/svg"
 								width="125"
 								height="125"
@@ -80,14 +84,8 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
-								<motion.polyline
-									style={{ cursor: "pointer" }}
-									whileHover={{ scale: 1.2 }}
-									whileTap={{ scale: 0.8 }}
-									onTap={() => setIndex(index - 1)}
-									points="15 18 9 12 15 6"
-								></motion.polyline>
-							</svg>
+								<polyline points="15 18 9 12 15 6"></polyline>
+							</motion.svg>
 						)}
 						<Image
 							onLoad={() => setIsLoaded(true)}
@@ -99,7 +97,11 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 							alt={image}
 						/>
 						{!isMobile && (
-							<svg
+							<motion.svg
+								style={{ cursor: "pointer", originX: "50%", originY: "50%" }}
+								whileHover={{ scale: 1.2 }}
+								whileTap={{ scale: 0.8 }}
+								onTap={() => setIndex(index + 1)}
 								xmlns="http://www.w3.org/2000/svg"
 								width="125"
 								height="125"
@@ -110,14 +112,8 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
-								<motion.polyline
-									style={{ cursor: "pointer" }}
-									whileHover={{ scale: 1.2 }}
-									whileTap={{ scale: 0.8 }}
-									onTap={() => setIndex(index + 1)}
-									points="9 18 15 12 9 6"
-								></motion.polyline>
-							</svg>
+								<polyline points="9 18 15 12 9 6"></polyline>
+							</motion.svg>
 						)}
 					</StyledModal>
 				)}
