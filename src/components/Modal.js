@@ -11,7 +11,7 @@ const StyledModal = styled(motion.div)`
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
-	z-index: 2;
+	z-index: 3;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
