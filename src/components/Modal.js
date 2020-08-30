@@ -11,11 +11,10 @@ const StyledModal = styled(motion.div)`
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
-	justify-content: center;
-	align-items: center;
 	z-index: 2;
 	display: flex;
-	opacity: 100;
+	justify-content: space-between;
+	align-items: center;
 `;
 
 const Image = styled(motion.img)`
@@ -34,6 +33,8 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 			setTimeout(() => {
 				enableBodyScroll();
 			}, 350);
+			const target = document.getElementById(index);
+			window.scrollTo({ top: target.offsetTop, behavior: "smooth" });
 		}
 	};
 
@@ -70,7 +71,12 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 					>
 						{!isMobile && (
 							<motion.svg
-								style={{ cursor: "pointer", originX: "50%", originY: "50%" }}
+								style={{
+									cursor: "pointer",
+									originX: "50%",
+									originY: "50%",
+									minWidth: "min-content",
+								}}
 								whileHover={{ scale: 1.2 }}
 								whileTap={{ scale: 0.8 }}
 								onTap={() => setIndex(index - 1)}
@@ -98,7 +104,12 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 						/>
 						{!isMobile && (
 							<motion.svg
-								style={{ cursor: "pointer", originX: "50%", originY: "50%" }}
+								style={{
+									cursor: "pointer",
+									originX: "50%",
+									originY: "50%",
+									minWidth: "min-content",
+								}}
 								whileHover={{ scale: 1.2 }}
 								whileTap={{ scale: 0.8 }}
 								onTap={() => setIndex(index + 1)}
