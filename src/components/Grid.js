@@ -51,6 +51,7 @@ const Grid = ({ images, setIndex, isMobile }) => {
 				return (
 					<ImageWrap
 						//offset={500}
+						id={index}
 						mobile={isMobile}
 						key={`${item} ${index}`}
 						onClick={() => handleClick(index)}
