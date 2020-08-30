@@ -27,12 +27,10 @@ const Image = styled(motion.img)`
 `;
 
 const Modal = ({ image, index, setIndex, max, isMobile }) => {
-	const [direction, setDirection] = useState(0);
-
+	const [isLoaded, setIsLoaded] = useState(false);
 	const handleClick = (e) => {
 		if (e.target.tagName === "DIV" || e.target.tagName === "IMG") {
 			setIndex(null);
-			setDirection(0);
 			setTimeout(() => {
 				enableBodyScroll();
 			}, 350);
@@ -46,27 +44,21 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 		}
 	}, [max, index, setIndex]);
 
-	const handleDirection = (d) => {
-		if (d) {
-			setDirection(window.innerWidth / 2);
-			setIndex(index + 1);
-		} else {
-			setDirection(-window.innerWidth / 2);
-			setIndex(index - 1);
-		}
-	};
+	useEffect(() => {
+		setIsLoaded(false);
+	}, [index]);
 
 	return (
 		<>
 			<KeyHandler
 				keyEventName={KEYDOWN}
 				code="ArrowRight"
-				onKeyHandle={() => handleDirection(true)}
+				onKeyHandle={() => setIndex(index + 1)}
 			/>
 			<KeyHandler
 				keyEventName={KEYDOWN}
 				code="ArrowLeft"
-				onKeyHandle={() => handleDirection(false)}
+				onKeyHandle={() => setIndex(index - 1)}
 			/>
 			<AnimatePresence type="crossfade">
 				{image && (
@@ -84,28 +76,28 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 								viewBox="0 0 24 24"
 								fill="none"
 								stroke="White"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 							>
 								<motion.polyline
 									style={{ cursor: "pointer" }}
 									whileHover={{ scale: 1.2 }}
 									whileTap={{ scale: 0.8 }}
-									onTap={() => handleDirection(false)}
+									onTap={() => setIndex(index - 1)}
 									points="15 18 9 12 15 6"
 								></motion.polyline>
 							</svg>
 						)}
 						<Image
+							onLoad={() => setIsLoaded(true)}
 							layout
-							initial={{ x: direction, opacity: 0 }}
-							animate={{ x: 0, opacity: 1 }}
+							initial={{ opacity: 0 }}
+							animate={{ opacity: isLoaded ? 1 : 0 }}
 							key={image}
 							src={process.env.PUBLIC_URL + `/img/${image}`}
 							alt={image}
 						/>
-
 						{!isMobile && (
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -114,15 +106,15 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 								viewBox="0 0 24 24"
 								fill="none"
 								stroke="White"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 							>
 								<motion.polyline
 									style={{ cursor: "pointer" }}
 									whileHover={{ scale: 1.2 }}
 									whileTap={{ scale: 0.8 }}
-									onTap={() => handleDirection(true)}
+									onTap={() => setIndex(index + 1)}
 									points="9 18 15 12 9 6"
 								></motion.polyline>
 							</svg>

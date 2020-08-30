@@ -21,6 +21,7 @@ const ImageWrap = styled.div`
 		opacity: 1;
 		transition: 0.3s;
 	}
+	background-color: #f4f4f4;
 `;
 
 const Image = styled.img`
