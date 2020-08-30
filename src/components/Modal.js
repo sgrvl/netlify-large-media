@@ -31,42 +31,17 @@ const Image = styled(motion.img)`
 `;
 
 const Modal = ({ image, index, setIndex, max }) => {
-	const [dragStart, setDragStart] = useState(null);
-	const [dragEnd, setDragEnd] = useState(null);
-	const [move, setMove] = useState(0);
 	const [direction, setDirection] = useState(0);
 
 	const handleClick = (e) => {
 		if (e.target.tagName === "DIV" || e.target.tagName === "IMG") {
 			setIndex(null);
-			enableBodyScroll();
+			setDirection(0);
+			setTimeout(() => {
+				enableBodyScroll();
+			}, 350);
 		}
 	};
-
-	const handleDragStart = (e) => {
-		setMove(0);
-		setDragStart(e);
-		setDragEnd(null);
-	};
-
-	useEffect(() => {
-		if (dragStart && dragEnd) setMove(dragEnd - dragStart);
-	}, [dragStart, dragEnd, move]);
-
-	useEffect(() => {
-		const threshold = window.innerWidth * 0.45;
-		if (move > threshold) {
-			setIndex(index + 1);
-			setMove(0);
-			setDragStart(null);
-			setDragEnd(null);
-		} else if (move < -threshold) {
-			setIndex(index - 1);
-			setMove(0);
-			setDragStart(null);
-			setDragEnd(null);
-		}
-	}, [move, setIndex, index]);
 
 	useEffect(() => {
 		if (index < 0 || index > max) {
@@ -127,20 +102,14 @@ const Modal = ({ image, index, setIndex, max }) => {
 							</svg>
 						)}
 						<Image
-							drag={isMobile ? "x" : false}
 							layout
 							initial={{ x: direction, opacity: 0 }}
 							animate={{ x: 0, opacity: 1 }}
 							key={image}
 							src={process.env.PUBLIC_URL + `/img/${image}`}
 							alt={image}
-							//Desktop dragging
-							/*onDragStart={(e) => handleDragStart(e.pageX)}
-							onDrag={(e) => setDragEnd(e.pageX)}*/
-							//Mobile dragging
-							onTouchStart={(e) => handleDragStart(-e.touches[0].pageX)}
-							onTouchMove={(e) => setDragEnd(-e.touches[0].pageX)}
 						/>
+
 						{!isMobile && (
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
