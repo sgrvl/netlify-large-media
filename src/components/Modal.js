@@ -36,7 +36,10 @@ const Modal = ({ image, index, setIndex, max }) => {
 	const handleClick = (e) => {
 		if (e.target.tagName === "DIV" || e.target.tagName === "IMG") {
 			setIndex(null);
-			enableBodyScroll();
+			setDirection(0);
+			setTimeout(() => {
+				enableBodyScroll();
+			}, 350);
 		}
 	};
 
@@ -106,6 +109,7 @@ const Modal = ({ image, index, setIndex, max }) => {
 							src={process.env.PUBLIC_URL + `/img/${image}`}
 							alt={image}
 						/>
+
 						{!isMobile && (
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
