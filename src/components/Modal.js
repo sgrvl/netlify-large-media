@@ -34,9 +34,10 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 				enableBodyScroll();
 			}, 350);
 			const target = document.getElementById(index);
-			if (target.offsetTop > window.innerHeight) {
+			const value = target.getBoundingClientRect().top;
+			const threshold = window.innerHeight - target.offsetHeight;
+			if (value > threshold || value < 0) {
 				target.scrollIntoView();
-				//window.scrollTo({ top: target, behavior: "smooth" });
 			}
 		}
 	};

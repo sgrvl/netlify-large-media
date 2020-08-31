@@ -8,7 +8,7 @@ const StyledGrid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
 	gap: 1em;
-	margin: 1em;
+	padding: 1em;
 `;
 
 const ImageWrap = styled.div`
@@ -33,9 +33,8 @@ const Grid = ({ images, setIndex }) => {
 		disableBodyScroll(window.body, options);
 		setIndex(index);
 	};
-
 	return (
-		<StyledGrid>
+		<StyledGrid id="Grid">
 			{images.map((item, index) => {
 				return (
 					<ImageWrap
