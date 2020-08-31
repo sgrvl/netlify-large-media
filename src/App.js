@@ -3,7 +3,7 @@ import Txt from "./components/list.txt";
 import { createGlobalStyle } from "styled-components";
 import { isMobile } from "react-device-detect";
 import Grid from "./components/Grid";
-import Modal from "./components/Modal";
+import Modal from "./components/Modal/Modal";
 import Banner from "./components/Banner/Banner";
 
 const GlobalStyle = createGlobalStyle`
@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 16px;
 		scroll-behavior: smooth;
+		font-family: 'Russo One', sans-serif;
   }
 
   *, *:before, *:after {

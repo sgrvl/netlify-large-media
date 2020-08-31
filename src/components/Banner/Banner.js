@@ -37,9 +37,7 @@ const StyledBanner = styled.img`
 const Banner = () => {
 	return (
 		<BannerWrap>
-			<Title>
-				{window.innerWidth}x{window.innerHeight}
-			</Title>
+			<Title>simon gravel</Title>
 			<Button onClick={() => document.getElementById("Grid").scrollIntoView()}>
 				test
 			</Button>

@@ -5,8 +5,6 @@ import styled from "styled-components";
 const StyledImage = styled(motion.img)`
 	height: 100%;
 	width: 100%;
-	max-width: 400px;
-	max-height: 400px;
 	object-fit: cover;
 	position: absolute;
 	top: 0;

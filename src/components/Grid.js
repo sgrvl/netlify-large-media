@@ -3,6 +3,7 @@ import { disableBodyScroll } from "body-scroll-lock";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 import Image from "./Image";
+import Square from "./LastSquare/LastSquare";
 
 const StyledGrid = styled.div`
 	display: grid;
@@ -28,7 +29,7 @@ const options = {
 	reserveScrollBarGap: true,
 };
 
-const Grid = ({ images, setIndex }) => {
+const Grid = ({ images, setIndex, isMobile }) => {
 	const handleClick = (index) => {
 		disableBodyScroll(window.body, options);
 		setIndex(index);
@@ -48,6 +49,7 @@ const Grid = ({ images, setIndex }) => {
 					</ImageWrap>
 				);
 			})}
+			<Square isMobile={isMobile} />
 		</StyledGrid>
 	);
 };
