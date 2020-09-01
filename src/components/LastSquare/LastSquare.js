@@ -54,7 +54,7 @@ const Square = ({ isMobile }) => {
 				href="https://www.instagram.com/nomisgrav/"
 				target="_blank"
 				rel="noopener noreferrer"
-				alt="instagram link"
+				aria-label="instagram link"
 			>
 				<Insta />
 			</a>
@@ -62,7 +62,7 @@ const Square = ({ isMobile }) => {
 				href="https://github.com/sgrvl/netlify-large-media"
 				target="_blank"
 				rel="noopener noreferrer"
-				alt="github link"
+				aria-label="github link"
 			>
 				<GitHub />
 			</a>
