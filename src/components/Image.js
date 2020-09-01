@@ -13,12 +13,20 @@ const StyledImage = styled(motion.img)`
 
 const Image = ({ item }) => {
 	const [isLoaded, setIsLoaded] = useState(false);
+	const width = document.getElementById("ImageWrap").offsetWidth;
 	return (
 		<StyledImage
 			onLoad={() => setIsLoaded(true)}
 			animate={{ opacity: isLoaded ? 1 : 0 }}
 			src={
-				process.env.PUBLIC_URL + `/img/${item}?nf_resize=smartcrop&w=400&h=400`
+				width < 300
+					? process.env.PUBLIC_URL +
+					  `/img/${item}?nf_resize=smartcrop&w=300&h=300`
+					: width < 350
+					? process.env.PUBLIC_URL +
+					  `/img/${item}?nf_resize=smartcrop&w=350&h=350`
+					: process.env.PUBLIC_URL +
+					  `/img/${item}?nf_resize=smartcrop&w=400&h=400`
 			}
 			alt={`${item}`}
 		/>
