@@ -43,7 +43,7 @@ const App = () => {
 	}, []);
 
 	return (
-		<>
+		<main>
 			<Modal
 				isMobile={isMobile}
 				setIndex={setIndex}
@@ -53,7 +53,7 @@ const App = () => {
 			/>
 			<Grid setIndex={setIndex} images={images} isMobile={isMobile} />
 			<GlobalStyle />
-		</>
+		</main>
 	);
 };
 
