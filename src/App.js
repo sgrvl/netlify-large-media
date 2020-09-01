@@ -4,7 +4,6 @@ import { createGlobalStyle } from "styled-components";
 import { isMobile } from "react-device-detect";
 import Grid from "./components/Grid";
 import Modal from "./components/Modal/Modal";
-import Banner from "./components/Banner/Banner";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -45,7 +44,6 @@ const App = () => {
 
 	return (
 		<>
-			<Banner />
 			<Modal
 				isMobile={isMobile}
 				setIndex={setIndex}
