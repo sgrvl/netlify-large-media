@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
-import { enableBodyScroll } from "body-scroll-lock";
 import KeyHandler, { KEYDOWN } from "react-key-handler";
 
 const StyledModal = styled(motion.div)`
@@ -25,13 +24,13 @@ const Image = styled(motion.img)`
 	box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
 `;
 
-const Modal = ({ image, index, setIndex, max, isMobile }) => {
+const Modal = ({ image, index, setIndex, max, isMobile, setScroll }) => {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const handleClick = (e) => {
 		if (e.target.tagName === "DIV" || e.target.tagName === "IMG") {
 			setIndex(null);
 			setTimeout(() => {
-				enableBodyScroll();
+				setScroll(true);
 			}, 350);
 			const target = document.getElementById(index);
 			const value = target.getBoundingClientRect().top;
@@ -45,9 +44,9 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 	useEffect(() => {
 		if (index < 0 || index > max) {
 			setIndex(null);
-			enableBodyScroll();
+			setScroll(true);
 		}
-	}, [max, index, setIndex]);
+	}, [max, index, setIndex, setScroll]);
 
 	useEffect(() => {
 		setIsLoaded(false);

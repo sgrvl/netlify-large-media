@@ -1,5 +1,4 @@
 import React from "react";
-import { disableBodyScroll } from "body-scroll-lock";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 import Image from "./Image";
@@ -25,13 +24,9 @@ const ImageWrap = styled.div`
 	background-color: #f4f4f4;
 `;
 
-const options = {
-	reserveScrollBarGap: true,
-};
-
-const Grid = ({ images, setIndex, isMobile }) => {
+const Grid = ({ images, setIndex, isMobile, setScroll }) => {
 	const handleClick = (index) => {
-		disableBodyScroll(window.body, options);
+		setScroll(false);
 		setIndex(index);
 	};
 	return (
