@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 import Image from "./Image";
@@ -25,6 +25,7 @@ const ImageWrap = styled.div`
 `;
 
 const Grid = ({ images, setIndex, isSmall, setScroll }) => {
+	const [isLoaded, setIsLoaded] = useState(false);
 	const handleClick = (index) => {
 		setScroll(false);
 		setIndex(index);
@@ -40,12 +41,12 @@ const Grid = ({ images, setIndex, isSmall, setScroll }) => {
 						onClick={() => handleClick(index)}
 					>
 						<LazyLoad offset={500} height="100%">
-							<Image item={item} />
+							<Image item={item} onLoad={() => setIsLoaded(true)} />
 						</LazyLoad>
 					</ImageWrap>
 				);
 			})}
-			<Square isMobile={isSmall} />
+			{isLoaded && <Square isMobile={isSmall} />}
 		</StyledGrid>
 	);
 };
