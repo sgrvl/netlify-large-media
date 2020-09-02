@@ -39,7 +39,8 @@ const Grid = ({ images, setIndex, isMobile }) => {
 			{images.map((item, index) => {
 				return (
 					<ImageWrap
-						id="ImageWrap"
+						id={index}
+						className="ImageWrap"
 						key={`${item} ${index}`}
 						onClick={() => handleClick(index)}
 					>
