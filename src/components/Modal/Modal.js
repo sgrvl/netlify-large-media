@@ -17,14 +17,13 @@ const StyledModal = styled(motion.div)`
 `;
 
 const Image = styled(motion.img)`
-	display: block;
 	max-width: 97%;
 	max-height: 97%;
 	margin: 60px auto;
 	box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
 `;
 
-const Modal = ({ image, index, setIndex, max, isMobile, setScroll }) => {
+const Modal = ({ image, index, setIndex, max, isSmall, setScroll }) => {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const handleClick = (e) => {
 		if (e.target.tagName === "DIV" || e.target.tagName === "IMG") {
@@ -54,20 +53,16 @@ const Modal = ({ image, index, setIndex, max, isMobile, setScroll }) => {
 
 	return (
 		<>
-			{!isMobile && (
-				<>
-					<KeyHandler
-						keyEventName={KEYDOWN}
-						code="ArrowRight"
-						onKeyHandle={() => setIndex(index + 1)}
-					/>
-					<KeyHandler
-						keyEventName={KEYDOWN}
-						code="ArrowLeft"
-						onKeyHandle={() => setIndex(index - 1)}
-					/>
-				</>
-			)}
+			<KeyHandler
+				keyEventName={KEYDOWN}
+				code="ArrowRight"
+				onKeyHandle={() => setIndex(index + 1)}
+			/>
+			<KeyHandler
+				keyEventName={KEYDOWN}
+				code="ArrowLeft"
+				onKeyHandle={() => setIndex(index - 1)}
+			/>
 			<AnimatePresence type="crossfade">
 				{image && (
 					<StyledModal
@@ -76,7 +71,7 @@ const Modal = ({ image, index, setIndex, max, isMobile, setScroll }) => {
 						initial={{ opacity: 0 }}
 						exit={{ opacity: 0 }}
 					>
-						{!isMobile && (
+						{!isSmall && (
 							<motion.svg
 								style={{
 									cursor: "pointer",
@@ -109,7 +104,7 @@ const Modal = ({ image, index, setIndex, max, isMobile, setScroll }) => {
 							src={process.env.PUBLIC_URL + `/img/${image}`}
 							alt={image}
 						/>
-						{!isMobile && (
+						{!isSmall && (
 							<motion.svg
 								style={{
 									cursor: "pointer",

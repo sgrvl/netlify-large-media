@@ -24,7 +24,7 @@ const ImageWrap = styled.div`
 	background-color: #f4f4f4;
 `;
 
-const Grid = ({ images, setIndex, isMobile, setScroll }) => {
+const Grid = ({ images, setIndex, isSmall, setScroll }) => {
 	const handleClick = (index) => {
 		setScroll(false);
 		setIndex(index);
@@ -45,7 +45,7 @@ const Grid = ({ images, setIndex, isMobile, setScroll }) => {
 					</ImageWrap>
 				);
 			})}
-			<Square isMobile={isMobile} />
+			<Square isMobile={isSmall} />
 		</StyledGrid>
 	);
 };

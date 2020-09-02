@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Txt from "./components/list.txt";
 import { createGlobalStyle } from "styled-components";
-import { isMobile } from "react-device-detect";
+//import { isMobile } from "react-device-detect";
 import Grid from "./components/Grid";
 import Modal from "./components/Modal/Modal";
 import { getScrollbarWidth } from "./utils";
@@ -51,7 +51,7 @@ const App = () => {
 	return (
 		<main>
 			<Modal
-				isMobile={isMobile}
+				isSmall={window.innerWidth < 1440}
 				setIndex={setIndex}
 				image={images[index]}
 				index={index}
@@ -61,7 +61,7 @@ const App = () => {
 			<Grid
 				setIndex={setIndex}
 				images={images}
-				isMobile={isMobile}
+				isSmall={window.innerWidth < 1440}
 				setScroll={setScroll}
 			/>
 			<GlobalStyle scroll={scroll} />

@@ -24,7 +24,7 @@ const StyledSquare = styled.div`
 	}
 `;
 
-const Square = ({ isMobile }) => {
+const Square = () => {
 	return (
 		<StyledSquare>
 			<a
