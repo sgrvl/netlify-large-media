@@ -55,16 +55,20 @@ const Modal = ({ image, index, setIndex, max, isMobile }) => {
 
 	return (
 		<>
-			<KeyHandler
-				keyEventName={KEYDOWN}
-				code="ArrowRight"
-				onKeyHandle={() => setIndex(index + 1)}
-			/>
-			<KeyHandler
-				keyEventName={KEYDOWN}
-				code="ArrowLeft"
-				onKeyHandle={() => setIndex(index - 1)}
-			/>
+			{!isMobile && (
+				<>
+					<KeyHandler
+						keyEventName={KEYDOWN}
+						code="ArrowRight"
+						onKeyHandle={() => setIndex(index + 1)}
+					/>
+					<KeyHandler
+						keyEventName={KEYDOWN}
+						code="ArrowLeft"
+						onKeyHandle={() => setIndex(index - 1)}
+					/>
+				</>
+			)}
 			<AnimatePresence type="crossfade">
 				{image && (
 					<StyledModal
