@@ -46,7 +46,7 @@ const App = () => {
 			.then(setImages);
 	}, []);
 
-	console.log(`${getScrollbarWidth()}`);
+	//console.log(`${getScrollbarWidth()}`);
 
 	return (
 		<main>
