@@ -13,7 +13,7 @@ const StyledImage = styled(motion.img)`
 
 const Image = ({ item }) => {
 	const [isLoaded, setIsLoaded] = useState(false);
-	const width = document.getElementsByClassName("ImageWrap").offsetWidth;
+	const width = document.getElementById("0").offsetWidth;
 	return (
 		<StyledImage
 			onLoad={() => setIsLoaded(true)}
