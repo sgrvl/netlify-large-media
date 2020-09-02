@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 16px;
 		scroll-behavior: smooth;
-		font-family: 'Russo One', sans-serif;
   }
 
   *, *:before, *:after {

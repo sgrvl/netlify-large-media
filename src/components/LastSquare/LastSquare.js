@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Arrow } from "./arrow-up-circle.svg";
 import { ReactComponent as Insta } from "./instagram.svg";
@@ -24,30 +24,7 @@ const StyledSquare = styled.div`
 	}
 `;
 
-const BackWrap = styled.div`
-	position: relative;
-	width: 100%;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	pointer-events: none;
-`;
-
-const Back = styled.div`
-	position: absolute;
-	z-index: 2;
-	width: 100%;
-	background-color: white;
-	color: black;
-	font-size: 1.2em;
-	opacity: ${(props) => (props.show ? 1 : 0)};
-	transition: opacity 0.3s ease-out;
-`;
-
 const Square = ({ isMobile }) => {
-	const [isHover, setIsHover] = useState(false);
-
 	return (
 		<StyledSquare>
 			<a
@@ -66,13 +43,9 @@ const Square = ({ isMobile }) => {
 			>
 				<GitHub />
 			</a>
-			<BackWrap
-				onMouseEnter={() => setIsHover(true)}
-				onMouseLeave={() => setIsHover(false)}
-			>
-				{!isMobile && <Back show={isHover}>TOP</Back>}
+			<div>
 				<Arrow onClick={() => window.scrollTo(0, 0)} />
-			</BackWrap>
+			</div>
 		</StyledSquare>
 	);
 };
