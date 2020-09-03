@@ -35,13 +35,14 @@ const Grid = ({ images, setIndex, isSmall, setScroll }) => {
 			{images.map((item, index) => {
 				return (
 					<ImageWrap
+						onLoad={() => setIsLoaded(true)}
 						id={index}
 						className="ImageWrap"
 						key={`${item} ${index}`}
 						onClick={() => handleClick(index)}
 					>
 						<LazyLoad offset={400} height="100%">
-							<Image item={item} onLoad={() => setIsLoaded(true)} />
+							<Image item={item} />
 						</LazyLoad>
 					</ImageWrap>
 				);
